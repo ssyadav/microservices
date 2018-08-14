@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: eureka-service
+
+server:
+  port: 8302
+
+eureka:
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    server:
+      waitTimeInMsWhenSyncEmpty: 0
+      
+
+zuul:
+  #Service will be mapped under the /api URI
+  prefix: /api
+  routes:
+    daanee-app:
+      path: /daanee-app/**
+      url: http://localhost:8082
+    daanee-app-auth-server:
+      path: /daanee-app-auth-server/**
+      url: http://localhost:8081  
+#    db-services:
+#      path: /db-service/**
+#      url: http://localhost:8300
+#    admin-services:
+#      path: /admin-services/**
+#      url: http://localhost:8301
